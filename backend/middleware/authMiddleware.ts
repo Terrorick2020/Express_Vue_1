@@ -9,7 +9,7 @@ export default function (roles: Array<string>) {
         }
 
         try {
-            const authHeader = req.headers.authorization;
+            const authHeader = req.cookies.AccessToken;
             if (!authHeader) {
                 return res.status(403).json({ message: 'Пользователь не авторизован' });
             }

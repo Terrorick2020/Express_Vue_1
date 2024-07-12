@@ -34,8 +34,9 @@ export default {
             }
         } catch (error) {
             console.error(`Возникла ошибка с контроллером при попытке получения всех книг!`);
-            console.error(error);
-            res.status(500).json({ 'result': 'server_error' });
+            const err = error as Error;
+            console.error(err);
+            res.status(500).json({ 'result': 'server_error', 'code': err.message });
         }
     },
 
@@ -59,8 +60,9 @@ export default {
             }
         } catch (error) {
             console.error(`Возникла ошибка с контроллером при попытке регистрации пользователя!`);
-            console.error(error);
-            res.status(500).json({ 'result': 'server_error' });
+            const err = error as Error;
+            console.error(err);
+            res.status(500).json({ 'result': 'server_error', 'code': err.message });
         }
     },
 
@@ -83,8 +85,9 @@ export default {
             }
         } catch (error) {
             console.error(`Возникла ошибка с контроллером при попытке добавления книги!`);
-            console.error(error);
-            res.status(500).json({ 'result': 'server_error' });
+            const err = error as Error;
+            console.error(err);
+            res.status(500).json({ 'result': 'server_error', 'code': err.message });
         }
     },
 
@@ -108,8 +111,9 @@ export default {
             }
         } catch (error) {
             console.error(`Возникла ошибка с контроллером при попытке удаления книги!`);
-            console.error(error);
-            res.status(500).json({ 'result': 'server_error' });
+            const err = error as Error;
+            console.error(err);
+            res.status(500).json({ 'result': 'server_error', 'code': err.message });
         }
     },
 
@@ -137,8 +141,9 @@ export default {
             }
         } catch (error) {
             console.error(`Возникла ошибка с контроллером при попытке обновления книги!`);
-            console.error(error);
-            res.status(500).json({ 'result': 'server_error' });
+            const err = error as Error;
+            console.error(err);
+            res.status(500).json({ 'result': 'server_error', 'code': err.message });
         }
     }
     

@@ -1,5 +1,6 @@
 import { Pool } from 'pg';
 import bcrypt from 'bcrypt';
+import { verify } from 'crypto';
 
 export default{ 
     identifyUser: async (pool: Pool, userData: { schema: string, login: string, password: string }) => {
@@ -127,6 +128,31 @@ export default{
                 code: 'database_error'
             };
         }
+    },
+
+    cheackMail: async (pool: Pool, userData: { schema: string, id: number }) => {
+        try {
+            const queryText = `SELECT isvalid FROM ${userData.schema} WHERE id=$1`;
+            const res = await pool.query(queryText, [userData.id]);
+            
+            if (res.rowCount > 0) {
+                return {
+                    result: 'success',
+                    isvalid: res.rows[0].isvalid
+                };
+            } else {
+                return {
+                    result: 'error',
+                    code: 'failed_checked_mail'
+                };
+            }
+        } catch (error) {
+            console.error('Возникла ошибка при работе с БД: PostgreSQL');
+            console.error(error);
+            return {
+                result: 'error',
+                code: 'database_error'
+            };
+        }
     }
-    
 };

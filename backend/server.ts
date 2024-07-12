@@ -3,6 +3,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 import cors from 'cors';
 dotenv.config({ path: 'backend/.env' });
+import cookieParser from 'cookie-parser';
 
 import bookRouter from './routes/bookRouter';
 import apiRouter from './routes/apiRouter';
@@ -22,6 +23,8 @@ app.use( cors() );
 app.use( express.json() );
 app.use( express.urlencoded( { extended: true } ) )
 app.use( express.static( path.join( __dirname, '../frontend/dist' ) ) );
+app.use(cookieParser());
+
 
 app.use( bookRouter );
 app.use( apiRouter );

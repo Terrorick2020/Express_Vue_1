@@ -9,5 +9,7 @@ router.put('/users/:id/role', authMiddleware(['ADMIN']), userController.changeRo
 
 router.get('/confirm/:token', userController.verifyMail);   
 
+router.get('/autorization', userController.cheackMail);
+
 
 export default router;
